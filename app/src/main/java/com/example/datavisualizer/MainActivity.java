@@ -25,21 +25,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(thisMainActivity, StackActivity.class);
                 startActivity(intent);
-        QueueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(thisMainActivity, QueueActivity.class);
-                startActivity(intent);
-         ListBtn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent intent = new Intent(thisMainActivity, ListActivity.class);
-                 startActivity(intent);
-             }
-         });
             }
         });
+        QueueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                    Intent intent = new Intent(thisMainActivity, QueueActivity.class);
+                    startActivity(intent);
+            }
+        });
+        ListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(thisMainActivity, ListActivity.class);
+                startActivity(intent);
             }
         });
     }
