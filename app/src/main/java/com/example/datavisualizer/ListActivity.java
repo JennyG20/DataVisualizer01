@@ -30,8 +30,8 @@ public class ListActivity extends AppCompatActivity {
 
     /**
      * Built in function, it runs whenever you create an instance of an activity .
-     *  In this function we initiate the java objects for the buttons and set the onclicklisteners
-     *  and say what they are going to do.
+     * In this function we initiate the java objects for the buttons and set the onclicklisteners
+     * and say what they are going to do.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,18 @@ public class ListActivity extends AppCompatActivity {
      * and calls the update functions.
      */
     private void removeItem() {
-        if(indexInput.getText().toString().equals("") || Integer.valueOf(indexInput.getText().toString()) < 0 || Integer.valueOf(indexInput.getText().toString()) >= ListOfItems.size()){
+        try {
+            if (indexInput.getText().toString().equals("") || Integer.valueOf(indexInput.getText().toString()) < 0 || Integer.valueOf(indexInput.getText().toString()) >= ListOfItems.size()) {
+
+                Context context = getApplicationContext();
+                CharSequence text = "Please set a valid index number";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                return;
+            }
+        } catch (NumberFormatException e) {
 
             Context context = getApplicationContext();
             CharSequence text = "Please set a valid index number";
@@ -85,7 +96,6 @@ public class ListActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            return;
         }
 
         ListOfItems.remove((int) Integer.valueOf(indexInput.getText().toString().trim()));
@@ -108,7 +118,7 @@ public class ListActivity extends AppCompatActivity {
 
             updateIndices();
             adapter.notifyDataSetChanged();
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
 
             Context context = getApplicationContext();
             CharSequence text = "Please set a valid index number";
