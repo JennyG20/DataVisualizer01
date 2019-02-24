@@ -78,29 +78,29 @@ public class ListActivity extends AppCompatActivity {
      */
     private void removeItem() {
         try {
-            if (indexInput.getText().toString().equals("") || Integer.valueOf(indexInput.getText().toString()) < 0 || Integer.valueOf(indexInput.getText().toString()) >= ListOfItems.size()) {
 
-                Context context = getApplicationContext();
-                CharSequence text = "Please set a valid index number";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+            if (!(indexInput.getText().toString().equals("") ||
+                    Integer.valueOf(indexInput.getText().toString()) < 0 ||
+                    Integer.valueOf(indexInput.getText().toString()) >= ListOfItems.size())) {
 
+                ListOfItems.remove((int) Integer.valueOf(indexInput.getText().toString().trim()));
+                updateIndices();
+                adapter.notifyDataSetChanged();
                 return;
-            }
-        } catch (NumberFormatException e) {
 
-            Context context = getApplicationContext();
-            CharSequence text = "Please set a valid index number";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            }
+
+        } catch (NumberFormatException e) {
 
         }
 
-        ListOfItems.remove((int) Integer.valueOf(indexInput.getText().toString().trim()));
-        updateIndices();
-        adapter.notifyDataSetChanged();
+        Context context = getApplicationContext();
+        CharSequence text = "Please set a valid index number";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+
     }
 
     /**
